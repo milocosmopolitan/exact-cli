@@ -1,12 +1,24 @@
 {
   "name": "nerd-cli",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "keywords": [
+    "react",
+    "cli",
+    "api",
+    "command line"
+  ],
+  "author": {
+    "name": "Milo Kang",
+    "email": "milowebmaster@gmail.com"
+  },
+  "repository" : {
+
+  },
   "license": "ISC",
   "dependencies": {
     "chalk": "^1.1.3",
