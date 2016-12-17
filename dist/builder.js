@@ -70,14 +70,14 @@ function generateFiles(filepath, customTemplate) {
 
 
     // Read all files in specific template directory
-    fs.readdir(`./templates/${customTemplate}`)
+    fs.readdir(path.join(__dirname, `/templates/${customTemplate}`))
         .then(files => {
 
             // loop thru each template files to generate files in frontend directory
             files.forEach(file => {
 
                 let targetPath = `${filepath}/${Name}-${file}`,
-                    templateFile = `./templates/${customTemplate}/${file}`;
+                    templateFile = path.join(__dirname, `/templates/${customTemplate}/${file}`);
 
                 fs.exists(targetPath)
                     .then(exists => {
