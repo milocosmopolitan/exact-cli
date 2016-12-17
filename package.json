@@ -1,6 +1,6 @@
 {
-  "name": "catalyst-cli",
-  "version": "0.0.1",
+  "name": "exact-cli",
+  "version": "0.0.2",
   "description": "",
   "main": "index.js",
   "bin" : {
@@ -21,7 +21,7 @@
   },
   "repository" : {
     "type": "git",
-    "url": "https://github.com/milocosmopolitan/catalyst-cli.git"
+    "url": "https://github.com/milocosmopolitan/exact-cli.git"
   },
   "license": "ISC",
   "dependencies": {

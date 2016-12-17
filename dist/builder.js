@@ -65,8 +65,7 @@ function attachModule(Name, moduleType) {
  */
 
 function generateFiles(filepath, customTemplate) {
-    let fileSet = ['component', 'reducer', 'actions'],
-        Name = filepath.split('/').pop();
+    let Name = filepath.split('/').pop();
 
 
     // Read all files in specific template directory
