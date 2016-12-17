@@ -1,8 +1,11 @@
 {
-  "name": "nerd-cli",
+  "name": "catalyst-cli",
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
+  "bin" : {
+    "nerd": "./bin/cli.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,11 +16,12 @@
     "command line"
   ],
   "author": {
-    "name": "Milo Kang",
+    "name": "milokang",
     "email": "milowebmaster@gmail.com"
   },
   "repository" : {
-
+    "type": "git",
+    "url": "https://github.com/milocosmopolitan/catalyst-cli.git"
   },
   "license": "ISC",
   "dependencies": {
