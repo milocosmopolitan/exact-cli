@@ -12,10 +12,11 @@ const log = console.log;
  */
 
 
-log('NERD BIN')
+log('EXACT CLI')
 commander
    .version(require('../package.json').version)
-   .option('-t, --template <engine>')
+   .option('-t, --template <name>')
+   
 
 commander.on('--help', function(){
   log('  Examples:');
@@ -24,6 +25,14 @@ commander.on('--help', function(){
   log('    make-component Post -t crud');
   log('');
 });
+
+commander
+    .command('init [optional]')
+    .description('Create new project')
+    .action((optional)=>{
+      log('init')      
+      log(optional)
+    })
 
 commander    
     .command('make-component <name> [optional]')

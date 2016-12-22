@@ -11,11 +11,7 @@ const react_dir = path.join(process.cwd(), '/app');
 const containers_dir = path.join(react_dir, '/components');
 
 
-function toPascalCase(str) {
-    return str.replace(/(\w)(\w*)/g, (g0, g1, g2) => {
-        return g1.toUpperCase() + g2.toLowerCase()
-    });
-}
+
 /*
  * ATTACH MODULE
  * ===================
@@ -69,14 +65,14 @@ function generateFiles(filepath, customTemplate) {
 
 
     // Read all files in specific template directory
-    fs.readdir(path.join(__dirname, `/templates/${customTemplate}`))
+    fs.readdir(path.join(__dirname, `../templates/${customTemplate}`))
         .then(files => {
 
             // loop thru each template files to generate files in frontend directory
             files.forEach(file => {
 
-                let targetPath = `${filepath}/${Name}-${file}`,
-                    templateFile = path.join(__dirname, `/templates/${customTemplate}/${file}`);
+                let targetPath = `${filepath}/${Name}-${file}`,                    
+                    templateFile = path.join(__dirname, `../templates/${customTemplate}/${file}`);
 
                 fs.exists(targetPath)
                     .then(exists => {
@@ -84,6 +80,14 @@ function generateFiles(filepath, customTemplate) {
                         // This is IMPORTANT because we want to 
                         // avoid user using the cli command to overwrite existing component
                         // That would be disaster...
+                        // perhaps prompt could be a solution..
+
+                        // Todo: allow users to store templates for exact component and
+                        //       when custumTemplate exists in local dev root/templates/templateName
+                        //       
+                        // let customTemplatePath = path.join(process.cwd(), `/templates${customTemplate}/${file}`),
+
+
                         if (exists) throw new Error(`File ${Name}-${file} Already EXISTS`)
                         return fs.read(templateFile)
                     })
@@ -100,41 +104,41 @@ function generateFiles(filepath, customTemplate) {
         .catch(console.error)
 }
 
-/*
- * MAKE COMPONENT
- * ===================
- * generate defalt file set for the react component with its
- * reducer and action creators
- */
 
-// function mkComponent(name, optional) {
-//     log('make container');
-//     let Name = util.toPascalCase(name),
-//         filepath = path.join(containers_dir, `/${Name}`);
 
-//     message.green('Make Container')
-
-//     log(optional);
-//     let template = commander.template ? commander.template : 'blank'
-//     fs.mkdir(filepath).then(() => {
-//         return generateFiles(filepath, template)
-//     }).catch(console.error)
-// }
 
 module.exports = (commander)=>{
     return { 
+        init: (optional)=>{
+            log('create project');
+            // boilerplate skeleton filestructure for exact.io
+        },
+        /*
+         * MAKE COMPONENT
+         * ===================
+         * command: 'make-component <name> [optional]'
+         *
+         * generate default file set of react component with its
+         * reducer and stylesheet
+         *
+         */
         mkComponent: function(name, optional) {
+            
             log('make container');
+            // log(optional);
             let Name = util.toPascalCase(name),
                 filepath = path.join(containers_dir, `/${Name}`);
 
-            message.green('Make Container')
+            
 
-            log(optional);
-            let template = commander.template ? commander.template : 'blank'
+            log(commander)
+            // use blank template when template is not specified
+            let template = commander.template ? commander.template : 'blank';
+            message.green(`Make REACT Component with ${template} template.`);
+
             fs.mkdir(filepath).then(() => {
-                return generateFiles(filepath, template)
-            }).catch(console.error)
+                return generateFiles(filepath, template);
+            }).catch(message.red);
         }
-    }
-}
+    };
+};
